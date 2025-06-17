@@ -1,0 +1,19 @@
+[
+  {
+    "isbn": "1111",
+    "title": "JavaScript Basics",
+    "author": "John Doe",
+    "reviews": [
+      {
+        "username": "sohaib",
+        "review": "Great book on basics!"
+      }
+    ]
+  },
+  {
+    "isbn": "2222",
+    "title": "Node.js in Depth",
+    "author": "Jane Smith",
+    "reviews": []
+  }
+]

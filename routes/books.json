@@ -1,0 +1,36 @@
+const express = require('express');
+const router = express.Router();
+const fs = require('fs');
+
+const books = JSON.parse(fs.readFileSync('./data/books.json'));
+
+// Task 1: Get all books
+router.get('/', (req, res) => {
+  res.json(books);
+});
+
+// Task 2: Get book by ISBN
+router.get('/isbn/:isbn', (req, res) => {
+  const book = books.find(b => b.isbn === req.params.isbn);
+  book ? res.json(book) : res.status(404).send('Book not found');
+});
+
+// Task 3: Get books by author
+router.get('/author/:author', (req, res) => {
+  const result = books.filter(b => b.author.toLowerCase() === req.params.author.toLowerCase());
+  res.json(result);
+});
+
+// Task 4: Get books by title
+router.get('/title/:title', (req, res) => {
+  const result = books.filter(b => b.title.toLowerCase().includes(req.params.title.toLowerCase()));
+  res.json(result);
+});
+
+// Task 5: Get book reviews by ISBN
+router.get('/review/:isbn', (req, res) => {
+  const book = books.find(b => b.isbn === req.params.isbn);
+  book ? res.json(book.reviews) : res.status(404).send('Book not found');
+});
+
+module.exports = router;
